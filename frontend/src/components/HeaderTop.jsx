@@ -1,49 +1,40 @@
 import React from "react";
-import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 
 export default function HeaderTop() {
   return (
-    <header className="w-full sticky top-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto flex items-center h-16 px-4 justify-between">
+    <header className="w-full flex justify-center bg-white shadow-sm sticky top-0 z-50">
+      <div className="max-w-[1200px] w-full flex items-center justify-between px-4 py-3">
 
         {/* Menu gauche */}
-        <nav className="flex space-x-4 sm:space-x-6 md:space-x-10">
-  <a href="#" className="px-2 sm:px-4 hover:underline text-sm font-medium text-black">
-    Mode&nbsp;femme&nbsp;
-  </a>&nbsp;
-  <a href="#" className="px-2 sm:px-4 hover:underline text-sm font-medium text-black">
-    Mode&nbsp;homme&nbsp;
-  </a>
-  &nbsp; <a href="#" className="px-2 sm:px-4 hover:underline text-sm font-medium text-black">
-    Mode&nbsp;enfant
-  </a>
-</nav>
-
-
+        <nav className="flex space-x-4 text-sm font-medium text-black">
+          <a href="#" className="hover:underline">Mode femme</a>
+          <a href="#" className="hover:underline">Mode homme</a>
+          <a href="#" className="hover:underline">Mode enfant</a>
+        </nav>
 
         {/* Logo centré */}
-        <div className="flex justify-center flex-1 md:flex-none">
-          <img src="/images/logo.png" alt="FripMarket" className="h-10 object-contain" />
-        </div>
+        <img src="/images/logo.png" alt="FripMarket" className="h-10 object-contain" />
 
-        {/* Icônes droite */}
-        <div className="flex items-center gap-3">
+        {/* Barre de recherche + icônes droite */}
+        <div className="flex items-center gap-10">
+          {/* Barre de recherche avec icône à gauche */}
+          <div className="relative mr-12">
+          <AiOutlineSearch
+              className="absolute left-[-20px] top-1/2 -translate-y-1/2 text-gray-700"
+              size={23}
+            />
+            <input
+              type="text"
+              placeholder="Rechercher un article"
+              className="border border-gray-300 rounded-full pl-16 pr-4 py-2 text-sm focus:ring-2 focus:ring-gray-400 focus:border-gray-300 outline-none w-48"
+            />
+          </div>
 
-          {/* Favoris */}
-          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-            <AiOutlineHeart className="text-red-500 text-[20px] sm:text-[24px] md:text-[28px]" />
-          </button>
-
-          {/* Panier */}
-          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-            <AiOutlineShoppingCart className="text-green-600 text-[20px] sm:text-[24px] md:text-[28px]" />
-          </button>
-
-          {/* Menu mobile */}
-          <button className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors">
-            <AiOutlineMenu className="text-black text-[22px] sm:text-[26px]" />
-          </button>
-
+          {/* Icônes droite */}
+          <AiOutlineHeart className="text-red-500 text-2xl cursor-pointer hover:scale-110 transition-transform" />
+          <AiOutlineShoppingCart className="text-green-600 text-2xl cursor-pointer hover:scale-110 transition-transform" />
+          <AiOutlineMenu className="text-black text-2xl md:hidden cursor-pointer hover:scale-110 transition-transform" />
         </div>
       </div>
     </header>

@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Styles personnalisés */
 body {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #fff;
   color: #111;
+  scroll-behavior: smooth;
 }
+
 /* Masquer la scrollbar horizontale */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

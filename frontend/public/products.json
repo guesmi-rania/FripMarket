@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "title": "Hermès Pre-Owned",
+    "subtitle": "sac à main Kelly 28 (2020)",
+    "price": "$26,812",
+    "image": "https://via.placeholder.com/420x420.png?text=Herm%C3%A8s+Kelly",
+    "badge": "-15% offerts"
+  },
+  {
+    "id": 2,
+    "title": "Van Cleef & Arpels Pre-Owned",
+    "subtitle": "collier Alhambra en or 18ct (années 2010)",
+    "price": "4,739 dt",
+    "image": "https://via.placeholder.com/420x420.png?text=Van+Cleef+%26+Arpels",
+    "badge": "-15% offerts"
+  },
+  {
+    "id": 3,
+    "name": "Chaussures 3",
+    "category": "Chaussures",
+    "price": 285,
+    "image": "/images/prod4.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Vêtements 4",
+    "category": "Vêtements",
+    "price": 129,
+    "image": "/images/prod5.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Chaussures 5",
+    "category": "Chaussures",
+    "price": 230,
+    "image": "/images/prod6.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Vêtements 6",
+    "category": "Vêtements",
+    "price": 76,
+    "image": "/images/prod7.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Chaussures 7",
+    "category": "Chaussures",
+    "price": 281,
+    "image": "/images/prod8.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Chaussures 8",
+    "category": "Chaussures",
+    "price": 474,
+    "image": "/images/prod9.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Accessoires 9",
+    "category": "Accessoires",
+    "price": 189,
+    "image": "/images/prod10.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Vêtements 10",
+    "category": "Vêtements",
+    "price": 185,
+    "image": "/images/prod11.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Chaussures 11",
+    "category": "Chaussures",
+    "price": 75,
+    "image": "/images/prod12.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Vêtements 12",
+    "category": "Vêtements",
+    "price": 187,
+    "image": "/images/prod13.jpg"
+  }
+]

@@ -4,6 +4,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
+import NewArrivals from "./pages/NewArrivals";
+import Sale from "./pages/Sale";
+import Contact from "./pages/Contact";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
@@ -20,6 +23,9 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/nouveautes" element={<NewArrivals />} />
+            <Route path="/soldes" element={<Sale />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout/success" element={<Checkout />} />

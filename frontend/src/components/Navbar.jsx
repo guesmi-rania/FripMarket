@@ -3,12 +3,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 
 const links = [
-  { label: "Nouveautés", to: "/products" },
-  { label: "Femme", to: "/products" },
-  { label: "Homme", to: "/products" },
-  { label: "Enfant", to: "/products" },
-  { label: "Pre-owned", to: "/products" },
-  { label: "Soldes", to: "/products", accent: true },
+  { label: "Nouveautés", to: "/nouveautes" },
+  { label: "Tous les produits", to: "/products" },
+  { label: "Soldes", to: "/soldes", accent: true },
+  { label: "Contact", to: "/contact" },
 ];
 
 const readCount = () => {
@@ -64,14 +62,12 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white">
-      {/* Bandeau d'annonce */}
       <div className="bg-black px-4 py-2 text-center text-xs tracking-wide text-white">
         Livraison offerte dès 100 € · Pre-owned : -15% cette semaine
       </div>
 
       <div className={`border-b border-gray-100 bg-white transition-shadow ${scrolled ? "shadow-md" : ""}`}>
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 lg:h-20 lg:px-8">
-          {/* Burger (mobile) */}
           <button
             className="-ml-2 p-2 lg:hidden"
             onClick={() => setOpen(true)}
@@ -80,12 +76,10 @@ export default function Navbar() {
             <Menu size={24} />
           </button>
 
-          {/* Logo */}
           <Link to="/" className="shrink-0">
             <img src="/images/logo.png" alt="FripMarket" className="h-9 w-auto object-contain lg:h-11" />
           </Link>
 
-          {/* Liens (desktop) */}
           <nav className="hidden items-center gap-8 lg:flex">
             {links.map((l) => (
               <NavLink
@@ -98,7 +92,6 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Recherche + icônes */}
           <div className="flex items-center gap-1 sm:gap-3">
             <form onSubmit={submitSearch} className="relative hidden w-56 xl:block">
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
@@ -134,7 +127,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Recherche dépliable (mobile/tablette) */}
         {searchOpen && (
           <form onSubmit={submitSearch} className="border-t border-gray-100 px-4 py-3 xl:hidden">
             <div className="relative">
@@ -151,7 +143,6 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* Tiroir mobile */}
       <div className={`fixed inset-0 z-[60] lg:hidden ${open ? "" : "pointer-events-none"}`}>
         <div
           onClick={() => setOpen(false)}

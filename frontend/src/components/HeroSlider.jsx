@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 const slides = [
-  { id: 1, image: "/images/slider1.webp", title: "Nouvelle collection hiver", subtitle: "Les tendances 2026 sont arrivées" },
-  { id: 2, image: "/images/slider2.webp", title: "Promotions exclusives", subtitle: "Jusqu'à -50% sur les articles sélectionnés" },
+  { id: 1, image: "/images/slider1.webp", title: "Nouvelle collection hiver", subtitle: "Les tendances 2026 sont arrivées", to: "/nouveautes" },
+  { id: 2, image: "/images/slider2.webp", title: "Promotions exclusives", subtitle: "Jusqu'à -50% sur les articles sélectionnés", to: "/soldes" },
 ];
 
 export default function HeroSlider() {
@@ -36,7 +36,7 @@ export default function HeroSlider() {
               <h2 className="text-3xl font-bold leading-tight sm:text-5xl">{slide.title}</h2>
               <p className="mt-3 text-base font-light sm:text-xl">{slide.subtitle}</p>
               <Link
-                to="/products"
+                to={slide.to}
                 className="mt-6 self-start rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition hover:bg-gray-100"
               >
                 Découvrir

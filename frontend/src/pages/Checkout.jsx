@@ -6,7 +6,6 @@ export default function Checkout() {
   const [orderInfo, setOrderInfo] = useState(null);
 
   useEffect(() => {
-    // Nettoie le panier après un paiement réussi
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const total = cart.reduce((s, i) => s + i.price * (i.qty || 1), 0);
     setOrderInfo({ count: cart.length, total });

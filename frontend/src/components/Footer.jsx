@@ -13,9 +13,9 @@ export default function Footer() {
         <div>
           <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Boutique</h4>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/products" className="hover:text-white">Nouveautés</Link></li>
-            <li><Link to="/products" className="hover:text-white">Pre-owned</Link></li>
-            <li><Link to="/products" className="hover:text-white">Soldes</Link></li>
+            <li><Link to="/nouveautes" className="hover:text-white">Nouveautés</Link></li>
+            <li><Link to="/products" className="hover:text-white">Tous les produits</Link></li>
+            <li><Link to="/soldes" className="hover:text-white">Soldes</Link></li>
           </ul>
         </div>
         <div>
@@ -23,7 +23,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link to="/cart" className="hover:text-white">Mon panier</Link></li>
             <li><Link to="/login" className="hover:text-white">Mon compte</Link></li>
-            <li><a href="mailto:contact@fripmarket.com" className="hover:text-white">Contact</a></li>
+            <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
           </ul>
         </div>
         <div>

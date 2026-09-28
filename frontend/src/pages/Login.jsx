@@ -36,24 +36,18 @@ export default function Login() {
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-gray-50 px-4 py-12">
       <div className="w-full max-w-md">
-        {/* Logo / titre */}
         <div className="mb-8 flex flex-col items-center text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-black">
             <ShoppingBag size={26} className="text-white" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Connexion</h1>
-          <p className="mt-2 text-sm text-gray-500">
-            Accédez à votre espace FripMarket
-          </p>
+          <p className="mt-2 text-sm text-gray-500">Accédez à votre espace FripMarket</p>
         </div>
 
-        {/* Carte du formulaire */}
         <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
           <form onSubmit={handleLogin} className="space-y-5">
             {error && (
-              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
-                {error}
-              </div>
+              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">{error}</div>
             )}
 
             <div>

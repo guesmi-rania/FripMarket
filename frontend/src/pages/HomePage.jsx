@@ -25,6 +25,9 @@ const normalize = (p) => ({
   name: p.name,
   category: p.category,
   price: p.price,
+  oldPrice: p.oldPrice,
+  isNew: p.isNew,
+  onSale: p.onSale,
   image: p.imageUrl || p.image,
 });
 
@@ -64,7 +67,6 @@ export default function HomePage() {
     <div>
       <HeroSlider />
 
-      {/* Catégories */}
       <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
         <h2 className="mb-8 text-center text-2xl font-bold tracking-tight md:text-3xl">Explorer par catégorie</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
@@ -83,7 +85,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Bannière promo */}
       <section className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl bg-gray-900">
           <img src="/images/promo.jpg" alt="Pre-owned" className="absolute inset-0 h-full w-full object-cover opacity-50" />
@@ -101,7 +102,7 @@ export default function HomePage() {
               Sélection d'articles d'occasion de grandes maisons, vérifiés par nos experts. Des pièces uniques pour affirmer votre style.
             </p>
             <Link
-              to="/products"
+              to="/soldes"
               className="mt-8 inline-block rounded-full bg-white px-9 py-4 text-base font-semibold text-black transition hover:bg-gray-100"
             >
               Explorer la sélection
@@ -110,7 +111,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Produits */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <div className="mb-10 flex items-end justify-between">
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Sélection Pre-Owned</h2>
@@ -134,7 +134,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Réassurance */}
       <section className="border-y border-gray-100 bg-gray-50">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-12 lg:grid-cols-4 lg:px-8">
           {perks.map(({ icon: Icon, title, text }) => (
@@ -147,7 +146,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter */}
       <section className="mx-auto max-w-3xl px-4 py-20 text-center">
         <h2 className="text-2xl font-bold md:text-3xl">Restez informé</h2>
         <p className="mt-3 text-gray-600">Recevez nos nouveautés et offres exclusives.</p>

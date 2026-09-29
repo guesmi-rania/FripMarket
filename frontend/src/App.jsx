@@ -14,6 +14,11 @@ import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import Sell from "./pages/Sell";
 import AdminDashboard from "./pages/AdminDashboard";
+import ForgotPassword from "./pages/ForgotPassword";
+import Register from "./pages/Register";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyEmail from "./pages/VerifyEmail";
+
 
 export default function App() {
   return (
@@ -34,6 +39,10 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/sell" element={<Sell />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
           </Routes>
         </main>
         <Footer />

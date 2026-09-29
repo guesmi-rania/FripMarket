@@ -3,10 +3,11 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 
 const links = [
+  { label: "Femmes", to: "/categorie/femme" },
+  { label: "Hommes", to: "/categorie/homme" },
+  { label: "Enfants", to: "/categorie/enfant" },
   { label: "Nouveautés", to: "/nouveautes" },
-  { label: "Tous les produits", to: "/products" },
   { label: "Soldes", to: "/soldes", accent: true },
-  { label: "Contact", to: "/contact" },
 ];
 
 const readCount = () => {

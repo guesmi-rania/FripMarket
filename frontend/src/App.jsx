@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
+import CategoryPage from "./pages/CategoryPage";
 import NewArrivals from "./pages/NewArrivals";
 import Sale from "./pages/Sale";
 import Contact from "./pages/Contact";
@@ -23,6 +24,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/categorie/:section" element={<CategoryPage />} />
             <Route path="/nouveautes" element={<NewArrivals />} />
             <Route path="/soldes" element={<Sale />} />
             <Route path="/contact" element={<Contact />} />

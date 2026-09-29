@@ -45,6 +45,7 @@ export default function AdminDashboard() {
             <thead className="bg-gray-50 text-gray-500">
               <tr>
                 <th className="px-4 py-3 font-medium">Produit</th>
+                <th className="px-4 py-3 font-medium">Section</th>
                 <th className="px-4 py-3 font-medium">Catégorie</th>
                 <th className="px-4 py-3 font-medium">Prix</th>
                 <th className="px-4 py-3 font-medium">Statut</th>
@@ -54,6 +55,7 @@ export default function AdminDashboard() {
               {products.map((p) => (
                 <tr key={p._id}>
                   <td className="px-4 py-3 font-medium text-gray-900">{p.name}</td>
+                  <td className="px-4 py-3 text-gray-500">{p.section}</td>
                   <td className="px-4 py-3 text-gray-500">{p.category}</td>
                   <td className="px-4 py-3 font-semibold">{p.price} €</td>
                   <td className="px-4 py-3">

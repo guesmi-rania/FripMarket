@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { SlidersHorizontal } from "lucide-react";
 import api from "../api";
 import ProductCard from "../components/ProductCard";
 import FilterSidebar from "../components/FilterSideBar";
-import { ALL_SUBCATEGORIES } from "../data/categories";
+import { CATEGORY_TREE, sectionLabel, subcategoriesFor } from "../data/categories";
 
 const normalize = (p) => ({
   id: p._id || p.id,
@@ -18,19 +18,18 @@ const normalize = (p) => ({
   image: p.imageUrl || p.image,
 });
 
-/**
- * Reusable product listing page.
- * - filterFn: optional predicate to pre-filter the catalog (used by Nouveautés / Soldes)
- * - demoProducts: fallback example products shown if filterFn matches nothing yet
- *   (e.g. Soldes/Nouveautés before any real product has the flag set)
- * - title / subtitle: page heading
- */
-export default function Products({ filterFn, demoProducts, title = "Tous les produits", subtitle }) {
+export default function CategoryPage() {
+  const { section } = useParams(); // "femme" | "homme" | "enfant"
+  const [params] = useSearchParams();
+  const q = (params.get("q") || "").toLowerCase();
+
+  const label = sectionLabel(section);
+  const subcategories = subcategoriesFor(section);
+  const isValidSection = Boolean(CATEGORY_TREE[section]);
+
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [params] = useSearchParams();
-  const q = (params.get("q") || "").toLowerCase();
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [minPrice, setMinPrice] = useState("");
@@ -38,7 +37,16 @@ export default function Products({ filterFn, demoProducts, title = "Tous les pro
   const [sort, setSort] = useState("recent");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
+  // Reset filters whenever the person switches section (Femme -> Homme, etc.)
   useEffect(() => {
+    setSelectedCategories([]);
+    setMinPrice("");
+    setMaxPrice("");
+    setSort("recent");
+  }, [section]);
+
+  useEffect(() => {
+    if (!isValidSection) return;
     let cancelled = false;
     const load = async () => {
       setLoading(true);
@@ -57,7 +65,7 @@ export default function Products({ filterFn, demoProducts, title = "Tous les pro
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [isValidSection]);
 
   const toggleCategory = (cat) => {
     setSelectedCategories((prev) =>
@@ -73,13 +81,9 @@ export default function Products({ filterFn, demoProducts, title = "Tous les pro
   };
 
   const filtered = useMemo(() => {
-    let list = filterFn ? allProducts.filter(filterFn) : allProducts;
-
-    // No real product has this flag yet (e.g. fresh store with no sale items) —
-    // show curated examples instead of an empty page.
-    if (filterFn && list.length === 0 && demoProducts?.length) {
-      list = demoProducts;
-    }
+    let list = allProducts.filter(
+      (p) => (p.section || "").toLowerCase() === section?.toLowerCase()
+    );
 
     if (q) list = list.filter((p) => p.name?.toLowerCase().includes(q));
 
@@ -96,18 +100,32 @@ export default function Products({ filterFn, demoProducts, title = "Tous les pro
     if (sort === "price-desc") list = [...list].sort((a, b) => b.price - a.price);
 
     return list;
-  }, [allProducts, filterFn, demoProducts, q, selectedCategories, minPrice, maxPrice, sort]);
+  }, [allProducts, section, q, selectedCategories, minPrice, maxPrice, sort]);
+
+  if (!isValidSection) {
+    return (
+      <div className="mx-auto max-w-lg px-4 py-24 text-center">
+        <h1 className="text-2xl font-bold">Catégorie introuvable</h1>
+        <p className="mt-2 text-gray-500">Cette section n'existe pas.</p>
+        <Link to="/products" className="mt-6 inline-block rounded-full bg-black px-6 py-3 text-sm font-semibold text-white">
+          Voir tous les produits
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">{title}</h1>
-        {subtitle && <p className="mt-2 text-gray-500">{subtitle}</p>}
+        <h1 className="text-3xl font-bold">{label}</h1>
+        <p className="mt-2 text-gray-500">
+          Découvrez notre sélection {label.toLowerCase()} : {subcategories.slice(0, 4).join(", ")}…
+        </p>
       </div>
 
       <div className="flex gap-10">
         <FilterSidebar
-          categories={ALL_SUBCATEGORIES}
+          categories={subcategories}
           selectedCategories={selectedCategories}
           onToggleCategory={toggleCategory}
           minPrice={minPrice}
@@ -140,7 +158,7 @@ export default function Products({ filterFn, demoProducts, title = "Tous les pro
             <p className="text-red-600">{error}</p>
           ) : filtered.length === 0 ? (
             <div className="rounded-xl border border-dashed border-gray-300 py-16 text-center text-gray-500">
-              Aucun produit ne correspond à ces filtres.
+              Aucun produit {label.toLowerCase()} ne correspond à ces filtres pour le moment.
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 xl:grid-cols-4">

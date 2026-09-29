@@ -7,10 +7,10 @@ import HeroSlider from "../components/HeroSlider";
 import ProductCard from "../components/ProductCard";
 
 const categories = [
-  { name: "Femme", image: "/images/cat-femme.jpg" },
-  { name: "Homme", image: "/images/cat-homme.jpg" },
-  { name: "Enfant", image: "/images/cat-enfant.jpg" },
-  { name: "Accessoires", image: "/images/cat-accessoires.jpg" },
+  { name: "Femme", image: "/images/cat-femme.jpg", to: "/categorie/femme" },
+  { name: "Homme", image: "/images/cat-homme.jpg", to: "/categorie/homme" },
+  { name: "Enfant", image: "/images/cat-enfant.jpg", to: "/categorie/enfant" },
+  { name: "Nouveautés", image: "/images/cat-accessoires.jpg", to: "/nouveautes" },
 ];
 
 const perks = [
@@ -71,7 +71,7 @@ export default function HomePage() {
         <h2 className="mb-8 text-center text-2xl font-bold tracking-tight md:text-3xl">Explorer par catégorie</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
           {categories.map((c) => (
-            <Link key={c.name} to="/products" className="group relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-200">
+            <Link key={c.name} to={c.to} className="group relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-200">
               <img
                 src={c.image}
                 alt={c.name}

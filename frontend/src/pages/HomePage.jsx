@@ -26,7 +26,7 @@ const normalize = (p) => ({
   category: p.category,
   price: p.price,
   oldPrice: p.oldPrice,
-  isNew: p.isNew,
+  isNewArrival: p.isNewArrival,
   onSale: p.onSale,
   image: p.imageUrl || p.image,
 });

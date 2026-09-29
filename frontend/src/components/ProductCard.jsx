@@ -15,7 +15,7 @@ export default function ProductCard({ product }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-          {product.isNew && (
+          {product.isNewArrival && (
             <span className="rounded bg-black px-2 py-1 text-xs font-medium text-white">Nouveau</span>
           )}
           {hasDiscount && (

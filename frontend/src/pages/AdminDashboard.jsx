@@ -60,7 +60,7 @@ export default function AdminDashboard() {
                   <td className="px-4 py-3 font-semibold">{p.price} €</td>
                   <td className="px-4 py-3">
                     <div className="flex gap-1.5">
-                      {p.isNew && (
+                      {p.isNewArrival && (
                         <span className="rounded bg-black px-2 py-0.5 text-xs text-white">Nouveau</span>
                       )}
                       {p.onSale && (

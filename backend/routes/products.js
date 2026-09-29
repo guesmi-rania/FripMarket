@@ -14,14 +14,14 @@ cloudinary.config({
 const router = express.Router();
 const upload = multer();
 
-// GET /api/products?section=Femme&category=Robes&isNew=true&onSale=true
+// GET /api/products?section=Femme&category=Robes&isNewArrival=true&onSale=true
 router.get('/', async (req, res) => {
   try {
-    const { section, category, isNew, onSale } = req.query;
+    const { section, category, isNewArrival, onSale } = req.query;
     const filter = {};
     if (section) filter.section = section;
     if (category) filter.category = category;
-    if (isNew !== undefined) filter.isNew = isNew === 'true';
+    if (isNewArrival !== undefined) filter.isNewArrival = isNewArrival === 'true';
     if (onSale !== undefined) filter.onSale = onSale === 'true';
 
     const products = await Product.find(filter).sort({ createdAt: -1 });
@@ -54,7 +54,7 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
       imageUrl = result.secure_url;
     }
 
-    const { name, description, price, oldPrice, section, category, stock, isNew, onSale } = req.body;
+    const { name, description, price, oldPrice, section, category, stock, isNewArrival, onSale } = req.body;
 
     if (!section || !category) {
       return res.status(400).json({ message: 'section et category sont obligatoires' });
@@ -68,7 +68,7 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
       section,
       category,
       stock,
-      isNew: isNew === true || isNew === 'true',
+      isNewArrival: isNewArrival === true || isNewArrival === 'true',
       onSale: onSale === true || onSale === 'true',
       imageUrl,
     });

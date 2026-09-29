@@ -13,7 +13,7 @@ const normalize = (p) => ({
   category: p.category,
   price: Number(p.price),
   oldPrice: p.oldPrice ? Number(p.oldPrice) : undefined,
-  isNew: !!p.isNew,
+  isNewArrival: !!p.isNewArrival,
   onSale: !!p.onSale,
   image: p.imageUrl || p.image,
 });

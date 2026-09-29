@@ -28,7 +28,7 @@ for (let i = 1; i <= 60; i++) {
     price,
     ...(onSale ? { oldPrice: Math.round(price * 1.5) } : {}),
     onSale,
-    isNew: Math.random() < 0.2,
+    isNewArrival: Math.random() < 0.2,
     image: "/images/placeholder.jpg",
   });
 }

@@ -2,12 +2,12 @@
 // pages never look empty before real flagged products exist in the database.
 
 export const DEMO_NEW_ARRIVALS = [
-  { id: "demo-n1", name: "Robe midi imprimée", section: "Femme", category: "Robes", price: 42, isNew: true, image: "/images/placeholder.jpg" },
-  { id: "demo-n2", name: "Chemise en lin", section: "Homme", category: "Chemises", price: 38, isNew: true, image: "/images/placeholder.jpg" },
-  { id: "demo-n3", name: "Sac bandoulière cuir", section: "Femme", category: "Sacs", price: 55, isNew: true, image: "/images/placeholder.jpg" },
-  { id: "demo-n4", name: "Baskets enfant", section: "Enfant", category: "Chaussures", price: 28, isNew: true, image: "/images/placeholder.jpg" },
-  { id: "demo-n5", name: "Veste denim", section: "Homme", category: "Vestes", price: 45, isNew: true, image: "/images/placeholder.jpg" },
-  { id: "demo-n6", name: "Jupe plissée", section: "Femme", category: "Jupes", price: 32, isNew: true, image: "/images/placeholder.jpg" },
+  { id: "demo-n1", name: "Robe midi imprimée", section: "Femme", category: "Robes", price: 42, isNewArrival: true, image: "/images/placeholder.jpg" },
+  { id: "demo-n2", name: "Chemise en lin", section: "Homme", category: "Chemises", price: 38, isNewArrival: true, image: "/images/placeholder.jpg" },
+  { id: "demo-n3", name: "Sac bandoulière cuir", section: "Femme", category: "Sacs", price: 55, isNewArrival: true, image: "/images/placeholder.jpg" },
+  { id: "demo-n4", name: "Baskets enfant", section: "Enfant", category: "Chaussures", price: 28, isNewArrival: true, image: "/images/placeholder.jpg" },
+  { id: "demo-n5", name: "Veste denim", section: "Homme", category: "Vestes", price: 45, isNewArrival: true, image: "/images/placeholder.jpg" },
+  { id: "demo-n6", name: "Jupe plissée", section: "Femme", category: "Jupes", price: 32, isNewArrival: true, image: "/images/placeholder.jpg" },
 ];
 
 export const DEMO_SALE_PRODUCTS = [

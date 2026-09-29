@@ -10,7 +10,7 @@ const initialForm = {
   section: "",
   category: "",
   imageUrl: "",
-  isNew: false,
+  isNewArrival: false,
   onSale: false,
 };
 
@@ -177,7 +177,7 @@ export default function Sell() {
 
         <div className="flex gap-6">
           <label className="flex items-center gap-2 text-sm text-gray-700">
-            <input type="checkbox" name="isNew" checked={form.isNew} onChange={handleChange} />
+            <input type="checkbox" name="isNewArrival" checked={form.isNewArrival} onChange={handleChange} />
             Marquer comme nouveauté
           </label>
           <label className="flex items-center gap-2 text-sm text-gray-700">

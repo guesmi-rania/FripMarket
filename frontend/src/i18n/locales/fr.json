@@ -1,0 +1,187 @@
+{
+  "nav": {
+    "announcement": "Livraison offerte dès 100 € · Pre-owned : -15% cette semaine",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher un article",
+    "wishlist": "Favoris",
+    "account": "Compte",
+    "cart": "Panier",
+    "myAccount": "Mon compte",
+    "viewAllSection": "Voir tout {{section}}",
+    "new": "Nouveautés",
+    "sale": "Soldes"
+  },
+  "common": {
+    "loading": "Chargement…",
+    "loadingSlow": "Chargement… (le serveur peut mettre quelques secondes à se réveiller)",
+    "noResults": "Aucun produit ne correspond à ces filtres.",
+    "filters": "Filtres",
+    "articleCount_one": "{{count}} article",
+    "articleCount_other": "{{count}} articles"
+  },
+  "category": {
+    "notFound": "Catégorie introuvable",
+    "notFoundText": "Cette section n'existe pas.",
+    "seeAll": "Voir tous les produits",
+    "subtitle": "Découvrez notre sélection {{section}} :"
+  },
+  "errors": {
+    "loadProducts": "Impossible de charger les produits pour le moment.",
+    "generic": "Une erreur est survenue. Réessaie dans un instant."
+  },
+  "footer": {
+    "tagline": "La mode d'occasion, sélectionnée avec soin. Des pièces uniques à prix juste.",
+    "shopHeading": "Boutique",
+    "newArrivals": "Nouveautés",
+    "allProducts": "Tous les produits",
+    "sale": "Soldes",
+    "helpHeading": "Aide",
+    "myCart": "Mon panier",
+    "myAccountLink": "Mon compte",
+    "contact": "Contact",
+    "paymentHeading": "Paiement",
+    "paymentText": "Paiement sécurisé par carte via Stripe.",
+    "rights": "Tous droits réservés."
+  },
+  "home": {
+    "exploreByCategory": "Explorer par catégorie",
+    "promoTitle": "Pre-owned : -15%",
+    "promoText": "Sélection d'articles d'occasion de grandes maisons, vérifiés par nos experts. Des pièces uniques pour affirmer votre style.",
+    "promoButton": "Explorer la sélection",
+    "selectionTitle": "Sélection Pre-Owned",
+    "seeAll": "Tout voir",
+    "perksDelivery": "Livraison rapide",
+    "perksDeliveryText": "Offerte dès 100 €",
+    "perksPayment": "Paiement sécurisé",
+    "perksPaymentText": "Cartes via Stripe",
+    "perksVerified": "Articles vérifiés",
+    "perksVerifiedText": "Contrôlés par nos experts",
+    "perksReturns": "Retours faciles",
+    "perksReturnsText": "Sous 14 jours",
+    "newsletterTitle": "Restez informé",
+    "newsletterText": "Recevez nos nouveautés et offres exclusives.",
+    "newsletterPlaceholder": "Votre adresse email",
+    "newsletterButton": "S'inscrire",
+    "newsletterSending": "Inscription…",
+    "newsletterSuccess": "Inscription réussie ! Merci.",
+    "newsletterAlready": "Vous êtes déjà inscrit(e) !",
+    "newsletterError": "Erreur, réessaie dans un instant."
+  },
+  "filters": {
+    "sortBy": "Trier par",
+    "sortRecent": "Plus récents",
+    "sortPriceAsc": "Prix croissant",
+    "sortPriceDesc": "Prix décroissant",
+    "category": "Catégorie",
+    "price": "Prix (€)",
+    "min": "Min",
+    "max": "Max",
+    "reset": "Réinitialiser les filtres"
+  },
+  "pages": {
+    "allProducts": { "title": "Tous les produits" },
+    "newArrivals": { "title": "Nouveautés", "subtitle": "Les dernières pièces ajoutées à notre sélection." },
+    "sale": { "title": "Soldes", "subtitle": "Jusqu'à -50% sur une sélection d'articles pre-owned." }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Une question sur une commande, un article ou un partenariat ? Écris-nous, on te répond rapidement.",
+    "emailLabel": "Email",
+    "phoneLabel": "Téléphone",
+    "addressLabel": "Adresse",
+    "formName": "Nom complet",
+    "formNamePlaceholder": "Votre nom",
+    "formEmail": "Email",
+    "formSubject": "Sujet",
+    "formSubjectPlaceholder": "Sujet de votre message",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Comment pouvons-nous vous aider ?",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours…",
+    "successTitle": "Message envoyé",
+    "successText": "Merci de nous avoir contactés, on revient vers toi bientôt.",
+    "sendAnother": "Envoyer un autre message",
+    "error": "Une erreur est survenue. Réessaie dans un instant."
+  },
+  "cart": {
+    "title": "Mon panier",
+    "empty": "Votre panier est vide.",
+    "seeProducts": "Voir les produits",
+    "total": "Total",
+    "emailOptional": "Votre email (optionnel)",
+    "pay": "Payer avec Stripe",
+    "redirecting": "Redirection…",
+    "error": "Erreur lors du paiement. Vérifie ta connexion et réessaie."
+  },
+  "checkout": {
+    "title": "Paiement réussi !",
+    "text": "Merci pour votre achat sur FripMarket. Un email de confirmation vous sera envoyé sous peu.",
+    "orderSummary": "Résumé de la commande",
+    "continueShopping": "Continuer mes achats",
+    "backHome": "Retour à l'accueil"
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Accédez à votre espace FripMarket",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion en cours…",
+    "noAccount": "Pas encore de compte ?",
+    "createAccount": "Créer un compte",
+    "adminNote": "Le tableau de bord admin est réservé aux comptes administrateur.",
+    "errorFillFields": "Merci de remplir tous les champs.",
+    "errorInvalid": "Email ou mot de passe incorrect."
+  },
+  "register": {
+    "title": "Créer un compte",
+    "subtitle": "Rejoignez FripMarket",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Créer mon compte",
+    "submitting": "Création en cours…",
+    "alreadyHaveAccount": "Déjà un compte ?",
+    "signIn": "Se connecter",
+    "success": "Compte créé ! Vérifie ta boîte mail pour confirmer ton adresse avant de te connecter.",
+    "errorPasswordMismatch": "Les mots de passe ne correspondent pas.",
+    "errorGeneric": "Une erreur est survenue."
+  },
+  "forgotPassword": {
+    "title": "Mot de passe oublié",
+    "subtitle": "On t'envoie un lien de réinitialisation par email.",
+    "email": "Adresse email",
+    "send": "Envoyer le lien",
+    "sending": "Envoi en cours…",
+    "success": "Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé. Vérifie ta boîte mail (et tes spams).",
+    "backToLogin": "Retour à la connexion"
+  },
+  "resetPassword": {
+    "title": "Nouveau mot de passe",
+    "subtitle": "Choisis un nouveau mot de passe pour ton compte.",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Réinitialiser le mot de passe",
+    "submitting": "Enregistrement…",
+    "success": "Mot de passe réinitialisé avec succès.",
+    "goToLogin": "Aller à la connexion",
+    "invalidLink": "Ce lien est invalide ou a expiré.",
+    "errorMismatch": "Les mots de passe ne correspondent pas.",
+    "errorGeneric": "Une erreur est survenue."
+  },
+  "verifyEmail": {
+    "verifying": "Vérification de votre email…",
+    "success": "Email vérifié !",
+    "successText": "Vous pouvez maintenant vous connecter.",
+    "goToLogin": "Aller à la connexion",
+    "error": "Lien invalide ou expiré",
+    "errorText": "Merci de recommencer l'inscription ou de demander un nouveau lien."
+  },
+  "product": {
+    "addToCart": "Ajouter au panier",
+    "added": "Ajouté ✓"
+  }
+}

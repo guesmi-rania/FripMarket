@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ProductCard({ product }) {
+  const { t, i18n } = useTranslation();
+  const newLabel = i18n.language === "en" ? "New" : "Nouveau";
   const id = product.id ?? product._id;
   const image = product.image || product.imageUrl || "/images/placeholder.jpg";
   const hasDiscount = product.onSale && product.oldPrice > product.price;
@@ -16,7 +19,7 @@ export default function ProductCard({ product }) {
         />
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           {product.isNewArrival && (
-            <span className="rounded bg-black px-2 py-1 text-xs font-medium text-white">Nouveau</span>
+            <span className="rounded bg-black px-2 py-1 text-xs font-medium text-white">{newLabel}</span>
           )}
           {hasDiscount && (
             <span className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white">

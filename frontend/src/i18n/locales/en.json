@@ -1,0 +1,187 @@
+{
+  "nav": {
+    "announcement": "Free shipping from €100 · Pre-owned: -15% this week",
+    "openMenu": "Open menu",
+    "closeMenu": "Close",
+    "search": "Search",
+    "searchPlaceholder": "Search for an item",
+    "wishlist": "Wishlist",
+    "account": "Account",
+    "cart": "Cart",
+    "myAccount": "My account",
+    "viewAllSection": "View all {{section}}",
+    "new": "New Arrivals",
+    "sale": "Sale"
+  },
+  "common": {
+    "loading": "Loading…",
+    "loadingSlow": "Loading… (the server may take a few seconds to wake up)",
+    "noResults": "No products match these filters.",
+    "filters": "Filters",
+    "articleCount_one": "{{count}} item",
+    "articleCount_other": "{{count}} items"
+  },
+  "category": {
+    "notFound": "Category not found",
+    "notFoundText": "This section doesn't exist.",
+    "seeAll": "See all products",
+    "subtitle": "Discover our {{section}} selection:"
+  },
+  "errors": {
+    "loadProducts": "Couldn't load products right now.",
+    "generic": "Something went wrong. Please try again in a moment."
+  },
+  "footer": {
+    "tagline": "Curated second-hand fashion. Unique pieces at a fair price.",
+    "shopHeading": "Shop",
+    "newArrivals": "New Arrivals",
+    "allProducts": "All products",
+    "sale": "Sale",
+    "helpHeading": "Help",
+    "myCart": "My cart",
+    "myAccountLink": "My account",
+    "contact": "Contact",
+    "paymentHeading": "Payment",
+    "paymentText": "Secure card payment via Stripe.",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "exploreByCategory": "Shop by category",
+    "promoTitle": "Pre-owned: -15%",
+    "promoText": "A curated selection of second-hand pieces from great brands, checked by our experts. Unique pieces to shape your style.",
+    "promoButton": "Explore the selection",
+    "selectionTitle": "Pre-Owned Selection",
+    "seeAll": "See all",
+    "perksDelivery": "Fast delivery",
+    "perksDeliveryText": "Free from €100",
+    "perksPayment": "Secure payment",
+    "perksPaymentText": "Cards via Stripe",
+    "perksVerified": "Verified items",
+    "perksVerifiedText": "Checked by our experts",
+    "perksReturns": "Easy returns",
+    "perksReturnsText": "Within 14 days",
+    "newsletterTitle": "Stay in the loop",
+    "newsletterText": "Get our new arrivals and exclusive offers.",
+    "newsletterPlaceholder": "Your email address",
+    "newsletterButton": "Subscribe",
+    "newsletterSending": "Subscribing…",
+    "newsletterSuccess": "Subscribed! Thank you.",
+    "newsletterAlready": "You're already subscribed!",
+    "newsletterError": "Something went wrong, please try again."
+  },
+  "filters": {
+    "sortBy": "Sort by",
+    "sortRecent": "Newest",
+    "sortPriceAsc": "Price: low to high",
+    "sortPriceDesc": "Price: high to low",
+    "category": "Category",
+    "price": "Price (€)",
+    "min": "Min",
+    "max": "Max",
+    "reset": "Reset filters"
+  },
+  "pages": {
+    "allProducts": { "title": "All products" },
+    "newArrivals": { "title": "New Arrivals", "subtitle": "The latest pieces added to our selection." },
+    "sale": { "title": "Sale", "subtitle": "Up to -50% on a selection of pre-owned pieces." }
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "A question about an order, an item, or a partnership? Reach out — we reply quickly.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "addressLabel": "Address",
+    "formName": "Full name",
+    "formNamePlaceholder": "Your name",
+    "formEmail": "Email",
+    "formSubject": "Subject",
+    "formSubjectPlaceholder": "Subject of your message",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "How can we help you?",
+    "send": "Send message",
+    "sending": "Sending…",
+    "successTitle": "Message sent",
+    "successText": "Thanks for reaching out, we'll get back to you soon.",
+    "sendAnother": "Send another message",
+    "error": "Something went wrong. Please try again in a moment."
+  },
+  "cart": {
+    "title": "My cart",
+    "empty": "Your cart is empty.",
+    "seeProducts": "See products",
+    "total": "Total",
+    "emailOptional": "Your email (optional)",
+    "pay": "Pay with Stripe",
+    "redirecting": "Redirecting…",
+    "error": "Payment error. Check your connection and try again."
+  },
+  "checkout": {
+    "title": "Payment successful!",
+    "text": "Thank you for your purchase on FripMarket. A confirmation email will be sent shortly.",
+    "orderSummary": "Order summary",
+    "continueShopping": "Continue shopping",
+    "backHome": "Back to home"
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "Access your FripMarket account",
+    "email": "Email address",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "noAccount": "No account yet?",
+    "createAccount": "Create an account",
+    "adminNote": "The admin dashboard is reserved for administrator accounts.",
+    "errorFillFields": "Please fill in all fields.",
+    "errorInvalid": "Incorrect email or password."
+  },
+  "register": {
+    "title": "Create an account",
+    "subtitle": "Join FripMarket",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "submit": "Create my account",
+    "submitting": "Creating…",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "success": "Account created! Check your inbox to confirm your email before signing in.",
+    "errorPasswordMismatch": "Passwords don't match.",
+    "errorGeneric": "Something went wrong."
+  },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "subtitle": "We'll send you a reset link by email.",
+    "email": "Email address",
+    "send": "Send reset link",
+    "sending": "Sending…",
+    "success": "If an account exists with this email, a reset link was just sent. Check your inbox (and spam folder).",
+    "backToLogin": "Back to sign in"
+  },
+  "resetPassword": {
+    "title": "New password",
+    "subtitle": "Choose a new password for your account.",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "submit": "Reset password",
+    "submitting": "Saving…",
+    "success": "Password reset successfully.",
+    "goToLogin": "Go to sign in",
+    "invalidLink": "This link is invalid or has expired.",
+    "errorMismatch": "Passwords don't match.",
+    "errorGeneric": "Something went wrong."
+  },
+  "verifyEmail": {
+    "verifying": "Verifying your email…",
+    "success": "Email verified!",
+    "successText": "You can now sign in.",
+    "goToLogin": "Go to sign in",
+    "error": "Invalid or expired link",
+    "errorText": "Please sign up again or request a new link."
+  },
+  "product": {
+    "addToCart": "Add to cart",
+    "added": "Added ✓"
+  }
+}

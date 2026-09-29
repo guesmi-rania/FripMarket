@@ -5,6 +5,8 @@ import connectDB from './config/db.js';
 import productRoutes from './routes/products.js';
 import authRoutes from './routes/auth.js';
 import orderRoutes from './routes/orders.js';
+import newsletterRoutes from './routes/newsletter.js';
+import contactRoutes from './routes/contact.js';
 
 dotenv.config();
 const app = express();
@@ -29,6 +31,8 @@ connectDB();
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/contact', contactRoutes);
 
 app.get('/', (req, res) => {
   res.send('✅ Backend FripMarket fonctionne parfaitement !');

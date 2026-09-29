@@ -1,10 +1,5 @@
+import { useTranslation } from "react-i18next";
 import { SlidersHorizontal, X } from "lucide-react";
-
-const SORT_OPTIONS = [
-  { value: "recent", label: "Plus récents" },
-  { value: "price-asc", label: "Prix croissant" },
-  { value: "price-desc", label: "Prix décroissant" },
-];
 
 export default function FilterSidebar({
   categories,
@@ -20,10 +15,18 @@ export default function FilterSidebar({
   mobileOpen,
   onCloseMobile,
 }) {
+  const { t } = useTranslation();
+
+  const SORT_OPTIONS = [
+    { value: "recent", label: t("filters.sortRecent") },
+    { value: "price-asc", label: t("filters.sortPriceAsc") },
+    { value: "price-desc", label: t("filters.sortPriceDesc") },
+  ];
+
   const content = (
     <div className="space-y-8">
       <div>
-        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">Trier par</h3>
+        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">{t("filters.sortBy")}</h3>
         <select
           value={sort}
           onChange={(e) => onSortChange(e.target.value)}
@@ -38,7 +41,7 @@ export default function FilterSidebar({
       </div>
 
       <div>
-        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">Catégorie</h3>
+        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">{t("filters.category")}</h3>
         <div className="space-y-2.5">
           {categories.map((cat) => (
             <label key={cat} className="flex cursor-pointer items-center gap-2.5 text-sm text-gray-700">
@@ -55,14 +58,14 @@ export default function FilterSidebar({
       </div>
 
       <div>
-        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">Prix (€)</h3>
+        <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-900">{t("filters.price")}</h3>
         <div className="flex items-center gap-3">
           <input
             type="number"
             min="0"
             value={minPrice}
             onChange={(e) => onMinPriceChange(e.target.value)}
-            placeholder="Min"
+            placeholder={t("filters.min")}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-900"
           />
           <span className="text-gray-400">–</span>
@@ -71,7 +74,7 @@ export default function FilterSidebar({
             min="0"
             value={maxPrice}
             onChange={(e) => onMaxPriceChange(e.target.value)}
-            placeholder="Max"
+            placeholder={t("filters.max")}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-900"
           />
         </div>
@@ -81,17 +84,15 @@ export default function FilterSidebar({
         onClick={onReset}
         className="w-full rounded-full border border-gray-300 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
       >
-        Réinitialiser les filtres
+        {t("filters.reset")}
       </button>
     </div>
   );
 
   return (
     <>
-      {/* Desktop */}
       <aside className="hidden w-64 shrink-0 lg:block">{content}</aside>
 
-      {/* Mobile drawer */}
       <div className={`fixed inset-0 z-[70] lg:hidden ${mobileOpen ? "" : "pointer-events-none"}`}>
         <div
           onClick={onCloseMobile}
@@ -104,9 +105,9 @@ export default function FilterSidebar({
         >
           <div className="mb-6 flex items-center justify-between">
             <h2 className="flex items-center gap-2 text-lg font-bold">
-              <SlidersHorizontal size={18} /> Filtres
+              <SlidersHorizontal size={18} /> {t("common.filters")}
             </h2>
-            <button onClick={onCloseMobile} aria-label="Fermer">
+            <button onClick={onCloseMobile} aria-label={t("nav.closeMenu")}>
               <X size={22} />
             </button>
           </div>

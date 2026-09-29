@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { BadgeCheck, RefreshCcw, ShieldCheck, Truck } from "lucide-react";
 import api from "../api";
@@ -10,14 +11,6 @@ const categories = [
   { name: "Femme", image: "/images/cat-femme.jpg", to: "/categorie/femme" },
   { name: "Homme", image: "/images/cat-homme.jpg", to: "/categorie/homme" },
   { name: "Enfant", image: "/images/cat-enfant.jpg", to: "/categorie/enfant" },
-  { name: "Nouveautés", image: "/images/cat-accessoires.jpg", to: "/nouveautes" },
-];
-
-const perks = [
-  { icon: Truck, title: "Livraison rapide", text: "Offerte dès 100 €" },
-  { icon: ShieldCheck, title: "Paiement sécurisé", text: "Cartes via Stripe" },
-  { icon: BadgeCheck, title: "Articles vérifiés", text: "Contrôlés par nos experts" },
-  { icon: RefreshCcw, title: "Retours faciles", text: "Sous 14 jours" },
 ];
 
 const normalize = (p) => ({
@@ -41,7 +34,18 @@ const fadeUp = {
 };
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
+
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState("idle"); // idle | loading | success | already | error
+
+  const perks = [
+    { icon: Truck, title: t("home.perksDelivery"), text: t("home.perksDeliveryText") },
+    { icon: ShieldCheck, title: t("home.perksPayment"), text: t("home.perksPaymentText") },
+    { icon: BadgeCheck, title: t("home.perksVerified"), text: t("home.perksVerifiedText") },
+    { icon: RefreshCcw, title: t("home.perksReturns"), text: t("home.perksReturnsText") },
+  ];
 
   useEffect(() => {
     const load = async () => {
@@ -63,13 +67,27 @@ export default function HomePage() {
     load();
   }, []);
 
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    setNewsletterStatus("loading");
+    try {
+      const res = await api.post("/api/newsletter", { email: newsletterEmail.trim() });
+      setNewsletterStatus(res.data.message?.toLowerCase().includes("déjà") || res.data.alreadySubscribed ? "already" : "success");
+      setNewsletterEmail("");
+    } catch (err) {
+      console.error(err);
+      setNewsletterStatus("error");
+    }
+  };
+
   return (
     <div>
       <HeroSlider />
 
       <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight md:text-3xl">Explorer par catégorie</h2>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight md:text-3xl">{t("home.exploreByCategory")}</h2>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
           {categories.map((c) => (
             <Link key={c.name} to={c.to} className="group relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-200">
               <img
@@ -96,16 +114,14 @@ export default function HomePage() {
               transition={{ duration: 0.7 }}
               className="text-4xl font-extrabold tracking-tight md:text-6xl"
             >
-              Pre-owned : <span className="text-pink-400">-15%</span>
+              {t("home.promoTitle")}
             </motion.h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base text-gray-200 md:text-xl">
-              Sélection d'articles d'occasion de grandes maisons, vérifiés par nos experts. Des pièces uniques pour affirmer votre style.
-            </p>
+            <p className="mx-auto mt-5 max-w-2xl text-base text-gray-200 md:text-xl">{t("home.promoText")}</p>
             <Link
               to="/soldes"
               className="mt-8 inline-block rounded-full bg-white px-9 py-4 text-base font-semibold text-black transition hover:bg-gray-100"
             >
-              Explorer la sélection
+              {t("home.promoButton")}
             </Link>
           </div>
         </div>
@@ -113,9 +129,9 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <div className="mb-10 flex items-end justify-between">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Sélection Pre-Owned</h2>
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{t("home.selectionTitle")}</h2>
           <Link to="/products" className="text-sm font-semibold underline underline-offset-4 hover:text-pink-600">
-            Tout voir
+            {t("home.seeAll")}
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 xl:grid-cols-5">
@@ -147,18 +163,34 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-3xl px-4 py-20 text-center">
-        <h2 className="text-2xl font-bold md:text-3xl">Restez informé</h2>
-        <p className="mt-3 text-gray-600">Recevez nos nouveautés et offres exclusives.</p>
-        <form onSubmit={(e) => e.preventDefault()} className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <input
-            type="email"
-            placeholder="Votre adresse email"
-            className="flex-1 rounded-full border border-gray-300 px-5 py-3 text-sm outline-none focus:border-gray-500"
-          />
-          <button className="rounded-full bg-black px-8 py-3 text-sm font-semibold text-white hover:bg-gray-800">
-            S'inscrire
-          </button>
-        </form>
+        <h2 className="text-2xl font-bold md:text-3xl">{t("home.newsletterTitle")}</h2>
+        <p className="mt-3 text-gray-600">{t("home.newsletterText")}</p>
+
+        {newsletterStatus === "success" || newsletterStatus === "already" ? (
+          <p className="mt-6 rounded-full bg-green-50 px-5 py-3 text-sm font-medium text-green-700">
+            {newsletterStatus === "already" ? t("home.newsletterAlready") : t("home.newsletterSuccess")}
+          </p>
+        ) : (
+          <form onSubmit={handleNewsletterSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              required
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              placeholder={t("home.newsletterPlaceholder")}
+              className="flex-1 rounded-full border border-gray-300 px-5 py-3 text-sm outline-none focus:border-gray-500"
+            />
+            <button
+              disabled={newsletterStatus === "loading"}
+              className="rounded-full bg-black px-8 py-3 text-sm font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+            >
+              {newsletterStatus === "loading" ? t("home.newsletterSending") : t("home.newsletterButton")}
+            </button>
+          </form>
+        )}
+        {newsletterStatus === "error" && (
+          <p className="mt-3 text-sm text-red-600">{t("home.newsletterError")}</p>
+        )}
       </section>
     </div>
   );

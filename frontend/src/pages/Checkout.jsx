@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { CheckCircle2, Package, ShoppingBag } from "lucide-react";
 
 export default function Checkout() {
+  const { t } = useTranslation();
   const [orderInfo, setOrderInfo] = useState(null);
 
   useEffect(() => {
@@ -20,37 +22,29 @@ export default function Checkout() {
           <CheckCircle2 size={34} className="text-green-600" />
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900">Paiement réussi !</h1>
-        <p className="mt-3 text-gray-500">
-          Merci pour votre achat sur FripMarket. Un email de confirmation vous sera envoyé sous peu.
-        </p>
+        <h1 className="text-2xl font-bold text-gray-900">{t("checkout.title")}</h1>
+        <p className="mt-3 text-gray-500">{t("checkout.text")}</p>
 
         {orderInfo && orderInfo.count > 0 && (
           <div className="mt-8 rounded-xl bg-gray-50 p-5 text-left">
             <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
               <Package size={16} />
-              Résumé de la commande
+              {t("checkout.orderSummary")}
             </div>
             <div className="mt-3 flex items-center justify-between text-sm text-gray-600">
-              <span>{orderInfo.count} article{orderInfo.count > 1 ? "s" : ""}</span>
+              <span>{t("common.articleCount", { count: orderInfo.count })}</span>
               <span className="font-semibold text-gray-900">{orderInfo.total} €</span>
             </div>
           </div>
         )}
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link
-            to="/products"
-            className="flex-1 rounded-full border border-gray-300 py-3 text-sm font-semibold text-gray-900 transition hover:bg-gray-50"
-          >
-            Continuer mes achats
+          <Link to="/products" className="flex-1 rounded-full border border-gray-300 py-3 text-sm font-semibold text-gray-900 transition hover:bg-gray-50">
+            {t("checkout.continueShopping")}
           </Link>
-          <Link
-            to="/"
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-black py-3 text-sm font-semibold text-white transition hover:bg-gray-900"
-          >
+          <Link to="/" className="flex flex-1 items-center justify-center gap-2 rounded-full bg-black py-3 text-sm font-semibold text-white transition hover:bg-gray-900">
             <ShoppingBag size={16} />
-            Retour à l'accueil
+            {t("checkout.backHome")}
           </Link>
         </div>
       </div>

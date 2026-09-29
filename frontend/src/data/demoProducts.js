@@ -1,236 +1,38 @@
-// Curated demo products used as a fallback when the database
-// does not contain products for a category.
+// Curated example products used as a fallback so pages never look empty
+// before real flagged/categorized products exist in the database.
 
 export const DEMO_CATALOG = [
-  // FEMME
-  {
-    id: "demo-1",
-    name: "Robe midi imprimée",
-    section: "Femme",
-    category: "Robes",
-    price: 42,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-2",
-    name: "Robe longue fleurie",
-    section: "Femme",
-    category: "Robes",
-    price: 45,
-    oldPrice: 70,
-    onSale: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-3",
-    name: "Jupe plissée",
-    section: "Femme",
-    category: "Jupes",
-    price: 32,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-4",
-    name: "Set chemise et jupe",
-    section: "Femme",
-    category: "Sets",
-    price: 58,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-5",
-    name: "Chemise en soie",
-    section: "Femme",
-    category: "Chemises",
-    price: 40,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-6",
-    name: "Veste blazer",
-    section: "Femme",
-    category: "Vestes",
-    price: 55,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-7",
-    name: "Sac bandoulière cuir",
-    section: "Femme",
-    category: "Sacs",
-    price: 55,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-8",
-    name: "Sac à main cuir",
-    section: "Femme",
-    category: "Sacs",
-    price: 60,
-    oldPrice: 90,
-    onSale: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-9",
-    name: "Escarpins cuir",
-    section: "Femme",
-    category: "Chaussures",
-    price: 38,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-10",
-    name: "Collier doré",
-    section: "Femme",
-    category: "Bijoux",
-    price: 20,
-    oldPrice: 32,
-    onSale: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-11",
-    name: "Parfum vintage",
-    section: "Femme",
-    category: "Parfums",
-    price: 25,
-    image: "/images/placeholder.jpg",
-  },
+  { id: "demo-1",  name: "Robe midi imprimée",     section: "Femme",  category: "Robes",       price: 42, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-2",  name: "Robe longue fleurie",     section: "Femme",  category: "Robes",       price: 45, oldPrice: 70, onSale: true, image: "/images/placeholder.jpg" },
+  { id: "demo-3",  name: "Jupe plissée",            section: "Femme",  category: "Jupes",       price: 32, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-4",  name: "Set chemise et jupe",     section: "Femme",  category: "Sets",        price: 58, image: "/images/placeholder.jpg" },
+  { id: "demo-5",  name: "Chemise en soie",         section: "Femme",  category: "Chemises",    price: 40, image: "/images/placeholder.jpg" },
+  { id: "demo-6",  name: "Veste blazer",            section: "Femme",  category: "Vestes",      price: 55, image: "/images/placeholder.jpg" },
+  { id: "demo-7",  name: "Sac bandoulière cuir",    section: "Femme",  category: "Sacs",        price: 55, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-8",  name: "Sac à main cuir",         section: "Femme",  category: "Sacs",        price: 60, oldPrice: 90, onSale: true, image: "/images/placeholder.jpg" },
+  { id: "demo-9",  name: "Escarpins cuir",          section: "Femme",  category: "Chaussures",  price: 38, image: "/images/placeholder.jpg" },
+  { id: "demo-10", name: "Collier doré",            section: "Femme",  category: "Bijoux",      price: 20, oldPrice: 32, onSale: true, image: "/images/placeholder.jpg" },
+  { id: "demo-11", name: "Parfum vintage",          section: "Femme",  category: "Parfums",     price: 25, image: "/images/placeholder.jpg" },
 
-  // HOMME
-  {
-    id: "demo-12",
-    name: "Chemise en lin",
-    section: "Homme",
-    category: "Chemises",
-    price: 38,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-13",
-    name: "Chemise oxford",
-    section: "Homme",
-    category: "Chemises",
-    price: 35,
-    oldPrice: 55,
-    onSale: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-14",
-    name: "T-shirt basique",
-    section: "Homme",
-    category: "T-shirts",
-    price: 18,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-15",
-    name: "Pantalon chino",
-    section: "Homme",
-    category: "Pantalons",
-    price: 34,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-16",
-    name: "Veste denim",
-    section: "Homme",
-    category: "Vestes",
-    price: 45,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-17",
-    name: "Baskets blanches",
-    section: "Homme",
-    category: "Chaussures",
-    price: 50,
-    oldPrice: 80,
-    onSale: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-18",
-    name: "Ceinture cuir",
-    section: "Homme",
-    category: "Accessoires",
-    price: 15,
-    image: "/images/placeholder.jpg",
-  },
+  { id: "demo-12", name: "Chemise en lin",          section: "Homme",  category: "Chemises",    price: 38, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-13", name: "Chemise oxford",          section: "Homme",  category: "Chemises",    price: 35, oldPrice: 55, onSale: true, image: "/images/placeholder.jpg" },
+  { id: "demo-14", name: "T-shirt basique",         section: "Homme",  category: "T-shirts",    price: 18, image: "/images/placeholder.jpg" },
+  { id: "demo-15", name: "Pantalon chino",          section: "Homme",  category: "Pantalons",   price: 34, image: "/images/placeholder.jpg" },
+  { id: "demo-16", name: "Veste denim",             section: "Homme",  category: "Vestes",      price: 45, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-17", name: "Baskets blanches",        section: "Homme",  category: "Chaussures",  price: 50, oldPrice: 80, onSale: true, image: "/images/placeholder.jpg" },
+  { id: "demo-18", name: "Ceinture cuir",           section: "Homme",  category: "Accessoires", price: 15, image: "/images/placeholder.jpg" },
 
-  // ENFANT
-  {
-    id: "demo-19",
-    name: "T-shirt imprimé enfant",
-    section: "Enfant",
-    category: "Vêtements",
-    price: 15,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-20",
-    name: "Veste en jean enfant",
-    section: "Enfant",
-    category: "Vêtements",
-    price: 25,
-    oldPrice: 40,
-    onSale: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-21",
-    name: "Baskets enfant",
-    section: "Enfant",
-    category: "Chaussures",
-    price: 28,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-22",
-    name: "Bonnet en laine",
-    section: "Enfant",
-    category: "Accessoires",
-    price: 10,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-23",
-    name: "Peluche ourson",
-    section: "Enfant",
-    category: "Jouets",
-    price: 12,
-    isNewArrival: true,
-    image: "/images/placeholder.jpg",
-  },
-  {
-    id: "demo-24",
-    name: "Robe fillette",
-    section: "Enfant",
-    category: "Vêtements",
-    price: 20,
-    image: "/images/placeholder.jpg",
-  },
+  { id: "demo-19", name: "T-shirt imprimé enfant",  section: "Enfant", category: "Vêtements",   price: 15, image: "/images/placeholder.jpg" },
+  { id: "demo-20", name: "Veste en jean enfant",    section: "Enfant", category: "Vêtements",   price: 25, oldPrice: 40, onSale: true, image: "/images/placeholder.jpg" },
+  { id: "demo-21", name: "Baskets enfant",          section: "Enfant", category: "Chaussures",  price: 28, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-22", name: "Bonnet en laine",         section: "Enfant", category: "Accessoires", price: 10, image: "/images/placeholder.jpg" },
+  { id: "demo-23", name: "Peluche ourson",          section: "Enfant", category: "Jouets",      price: 12, isNewArrival: true,  image: "/images/placeholder.jpg" },
+  { id: "demo-24", name: "Robe fillette",           section: "Enfant", category: "Vêtements",   price: 20, image: "/images/placeholder.jpg" },
 ];
 
-export const DEMO_NEW_ARRIVALS = DEMO_CATALOG.filter(
-  (product) => product.isNewArrival
-);
-
-export const DEMO_SALE_PRODUCTS = DEMO_CATALOG.filter(
-  (product) => product.onSale
-);
+export const DEMO_NEW_ARRIVALS = DEMO_CATALOG.filter((p) => p.isNewArrival);
+export const DEMO_SALE_PRODUCTS = DEMO_CATALOG.filter((p) => p.onSale);
 
 export function demoForSection(section) {
-  return DEMO_CATALOG.filter(
-    (product) =>
-      product.section.toLowerCase() === section?.toLowerCase()
-  );
+  return DEMO_CATALOG.filter((p) => p.section.toLowerCase() === section?.toLowerCase());
 }

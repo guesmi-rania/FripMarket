@@ -1,39 +1,38 @@
-import express from "express";
+import express from 'express';
+import Newsletter from '../models/Newsletter.js';
 
 const router = express.Router();
 
 // POST /api/newsletter
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { email } = req.body;
 
     if (!email) {
       return res.status(400).json({
-        message: "Email is required.",
+        message: 'Email requis',
       });
     }
 
-    const normalizedEmail = email.trim().toLowerCase();
+    const existing = await Newsletter.findOne({ email });
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(normalizedEmail)) {
-      return res.status(400).json({
-        message: "Please enter a valid email address.",
+    if (existing) {
+      return res.status(200).json({
+        message: 'Vous êtes déjà inscrit(e) !',
+        alreadySubscribed: true,
       });
     }
 
-    console.log("Newsletter subscription:", normalizedEmail);
+    await Newsletter.create({ email });
 
-    return res.status(201).json({
-      success: true,
-      message: "You have successfully subscribed to our newsletter.",
+    res.status(201).json({
+      message: 'Inscription réussie !',
     });
-  } catch (error) {
-    console.error("Newsletter error:", error);
+  } catch (err) {
+    console.error(err);
 
-    return res.status(500).json({
-      message: "Failed to subscribe to the newsletter.",
+    res.status(500).json({
+      message: 'Erreur serveur',
     });
   }
 });

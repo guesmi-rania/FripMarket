@@ -1,34 +1,34 @@
-import express from "express";
+import express from 'express';
+import Contact from '../models/Contact.js';
 
 const router = express.Router();
 
 // POST /api/contact
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
 
     if (!name || !email || !message) {
       return res.status(400).json({
-        message: "Name, email and message are required.",
+        message: 'Nom, email et message sont requis',
       });
     }
 
-    console.log("Contact message received:", {
+    await Contact.create({
       name,
       email,
       subject,
       message,
     });
 
-    return res.status(201).json({
-      success: true,
-      message: "Your message has been received successfully.",
+    res.status(201).json({
+      message: 'Message envoyé avec succès',
     });
-  } catch (error) {
-    console.error("Contact error:", error);
+  } catch (err) {
+    console.error(err);
 
-    return res.status(500).json({
-      message: "Failed to send contact message.",
+    res.status(500).json({
+      message: 'Erreur serveur',
     });
   }
 });

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Trash2 } from "lucide-react";
 import api from "../api";
 
 export default function Cart() {
+  const { t } = useTranslation();
   const [cartItems, setCartItems] = useState([]);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,16 +22,13 @@ export default function Cart() {
   };
 
   const updateQty = (id, delta) => {
-    const items = cartItems
-      .map((item) =>
-        item._id === id ? { ...item, qty: Math.max(1, (item.qty || 1) + delta) } : item
-      );
+    const items = cartItems.map((item) =>
+      item._id === id ? { ...item, qty: Math.max(1, (item.qty || 1) + delta) } : item
+    );
     persist(items);
   };
 
-  const removeItem = (id) => {
-    persist(cartItems.filter((item) => item._id !== id));
-  };
+  const removeItem = (id) => persist(cartItems.filter((item) => item._id !== id));
 
   const total = cartItems.reduce((s, i) => s + i.price * (i.qty || 1), 0);
 
@@ -41,20 +40,20 @@ export default function Cart() {
       window.location.href = res.data.url;
     } catch (err) {
       console.error(err);
-      setError("Erreur lors du paiement. Vérifie ta connexion et réessaie.");
+      setError(t("cart.error"));
       setLoading(false);
     }
   };
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="mb-6 text-3xl font-bold">Mon panier</h1>
+      <h1 className="mb-6 text-3xl font-bold">{t("cart.title")}</h1>
 
       {cartItems.length === 0 ? (
         <div className="rounded-xl border border-dashed border-gray-300 py-16 text-center">
-          <p className="text-gray-500">Votre panier est vide.</p>
+          <p className="text-gray-500">{t("cart.empty")}</p>
           <Link to="/products" className="mt-4 inline-block rounded-full bg-black px-6 py-3 text-sm font-semibold text-white">
-            Voir les produits
+            {t("cart.seeProducts")}
           </Link>
         </div>
       ) : (
@@ -65,28 +64,14 @@ export default function Cart() {
                 <div>
                   <p className="font-medium text-gray-900">{item.name}</p>
                   <div className="mt-2 flex items-center gap-2">
-                    <button
-                      onClick={() => updateQty(item._id, -1)}
-                      className="h-7 w-7 rounded-full border border-gray-300 text-sm"
-                    >
-                      −
-                    </button>
+                    <button onClick={() => updateQty(item._id, -1)} className="h-7 w-7 rounded-full border border-gray-300 text-sm">−</button>
                     <span className="w-6 text-center text-sm">{item.qty || 1}</span>
-                    <button
-                      onClick={() => updateQty(item._id, 1)}
-                      className="h-7 w-7 rounded-full border border-gray-300 text-sm"
-                    >
-                      +
-                    </button>
+                    <button onClick={() => updateQty(item._id, 1)} className="h-7 w-7 rounded-full border border-gray-300 text-sm">+</button>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="font-semibold">{item.price * (item.qty || 1)} €</span>
-                  <button
-                    onClick={() => removeItem(item._id)}
-                    aria-label="Retirer"
-                    className="text-gray-400 hover:text-red-600"
-                  >
+                  <button onClick={() => removeItem(item._id)} aria-label="Retirer" className="text-gray-400 hover:text-red-600">
                     <Trash2 size={18} />
                   </button>
                 </div>
@@ -94,7 +79,7 @@ export default function Cart() {
             ))}
           </ul>
 
-          <p className="mt-4 text-right text-lg font-bold">Total : {total} €</p>
+          <p className="mt-4 text-right text-lg font-bold">{t("cart.total")} : {total} €</p>
 
           {error && <div className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">{error}</div>}
 
@@ -102,7 +87,7 @@ export default function Cart() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Votre email (optionnel)"
+            placeholder={t("cart.emailOptional")}
             className="mt-4 w-full rounded-full border border-gray-300 px-5 py-3 text-sm outline-none focus:border-gray-500"
           />
           <button
@@ -110,7 +95,7 @@ export default function Cart() {
             disabled={loading}
             className="mt-4 w-full rounded-full bg-black py-3 font-semibold text-white transition hover:bg-gray-900 disabled:opacity-50"
           >
-            {loading ? "Redirection…" : "Payer avec Stripe"}
+            {loading ? t("cart.redirecting") : t("cart.pay")}
           </button>
         </>
       )}

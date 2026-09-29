@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
-
-const links = [
-  { label: "Femmes", to: "/categorie/femme" },
-  { label: "Hommes", to: "/categorie/homme" },
-  { label: "Enfants", to: "/categorie/enfant" },
-  { label: "Nouveautés", to: "/nouveautes" },
-  { label: "Soldes", to: "/soldes", accent: true },
-];
+import { useTranslation } from "react-i18next";
+import { ChevronDown, Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { CATEGORY_TREE, SECTION_SLUGS } from "../data/categories";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const readCount = () => {
   try {
@@ -22,12 +17,21 @@ const readCount = () => {
 };
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [count, setCount] = useState(0);
   const [query, setQuery] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(null); // "femme" | "homme" | "enfant" | null
+  const [mobileExpanded, setMobileExpanded] = useState(null);
   const navigate = useNavigate();
+  const closeTimer = useRef(null);
+
+  const links = [
+    { label: t("nav.new"), to: "/nouveautes" },
+    { label: t("nav.sale"), to: "/soldes", accent: true },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -61,10 +65,18 @@ export default function Navbar() {
       isActive ? "text-pink-600" : "text-gray-800"
     }`;
 
+  const openMenu = (slug) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenDropdown(slug);
+  };
+  const scheduleClose = () => {
+    closeTimer.current = setTimeout(() => setOpenDropdown(null), 150);
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white">
-      <div className="bg-black px-4 py-2 text-center text-xs tracking-wide text-white">
-        Livraison offerte dès 100 € · Pre-owned : -15% cette semaine
+      <div className="flex items-center justify-center gap-4 bg-black px-4 py-2 text-center text-xs tracking-wide text-white">
+        <span>{t("nav.announcement")}</span>
       </div>
 
       <div className={`border-b border-gray-100 bg-white transition-shadow ${scrolled ? "shadow-md" : ""}`}>
@@ -72,7 +84,7 @@ export default function Navbar() {
           <button
             className="-ml-2 p-2 lg:hidden"
             onClick={() => setOpen(true)}
-            aria-label="Ouvrir le menu"
+            aria-label={t("nav.openMenu")}
           >
             <Menu size={24} />
           </button>
@@ -82,6 +94,46 @@ export default function Navbar() {
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
+            {SECTION_SLUGS.map((slug) => (
+              <div
+                key={slug}
+                className="relative"
+                onMouseEnter={() => openMenu(slug)}
+                onMouseLeave={scheduleClose}
+              >
+                <NavLink to={`/categorie/${slug}`} className={linkClass}>
+                  <span className="flex items-center gap-1">
+                    {CATEGORY_TREE[slug].label}
+                    <ChevronDown size={14} />
+                  </span>
+                </NavLink>
+
+                {openDropdown === slug && (
+                  <div className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3">
+                    <div className="rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
+                      {CATEGORY_TREE[slug].subcategories.map((sub) => (
+                        <Link
+                          key={sub}
+                          to={`/categorie/${slug}?cat=${encodeURIComponent(sub)}`}
+                          onClick={() => setOpenDropdown(null)}
+                          className="block rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-pink-600"
+                        >
+                          {sub}
+                        </Link>
+                      ))}
+                      <Link
+                        to={`/categorie/${slug}`}
+                        onClick={() => setOpenDropdown(null)}
+                        className="mt-1 block rounded-lg px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                      >
+                        {t("nav.viewAllSection", { section: CATEGORY_TREE[slug].label })}
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+
             {links.map((l) => (
               <NavLink
                 key={l.label}
@@ -94,12 +146,12 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-1 sm:gap-3">
-            <form onSubmit={submitSearch} className="relative hidden w-56 xl:block">
+            <form onSubmit={submitSearch} className="relative hidden w-48 xl:block">
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Rechercher un article"
+                placeholder={t("nav.searchPlaceholder")}
                 className="w-full rounded-full border border-gray-300 py-2 pl-10 pr-4 text-sm outline-none focus:border-gray-500 focus:ring-2 focus:ring-gray-200"
               />
             </form>
@@ -107,17 +159,17 @@ export default function Navbar() {
             <button
               className="p-2 hover:text-pink-600 xl:hidden"
               onClick={() => setSearchOpen((v) => !v)}
-              aria-label="Rechercher"
+              aria-label={t("nav.search")}
             >
               <Search size={22} />
             </button>
-            <Link to="/products" className="hidden p-2 hover:text-pink-600 sm:block" aria-label="Favoris">
+            <Link to="/products" className="hidden p-2 hover:text-pink-600 sm:block" aria-label={t("nav.wishlist")}>
               <Heart size={22} />
             </Link>
-            <Link to="/login" className="hidden p-2 hover:text-pink-600 sm:block" aria-label="Compte">
+            <Link to="/login" className="hidden p-2 hover:text-pink-600 sm:block" aria-label={t("nav.account")}>
               <User size={22} />
             </Link>
-            <Link to="/cart" className="relative p-2 hover:text-pink-600" aria-label="Panier">
+            <Link to="/cart" className="relative p-2 hover:text-pink-600" aria-label={t("nav.cart")}>
               <ShoppingBag size={22} />
               {count > 0 && (
                 <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-pink-600 px-1 text-[11px] font-bold text-white">
@@ -125,6 +177,9 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 
@@ -136,7 +191,7 @@ export default function Navbar() {
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Rechercher un article"
+                placeholder={t("nav.searchPlaceholder")}
                 className="w-full rounded-full border border-gray-300 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-gray-500"
               />
             </div>
@@ -144,6 +199,7 @@ export default function Navbar() {
         )}
       </div>
 
+      {/* Mobile drawer */}
       <div className={`fixed inset-0 z-[60] lg:hidden ${open ? "" : "pointer-events-none"}`}>
         <div
           onClick={() => setOpen(false)}
@@ -156,12 +212,48 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
             <img src="/images/logo.png" alt="FripMarket" className="h-8 w-auto" />
-            <button onClick={() => setOpen(false)} aria-label="Fermer" className="p-1">
+            <button onClick={() => setOpen(false)} aria-label={t("nav.closeMenu")} className="p-1">
               <X size={24} />
             </button>
           </div>
 
           <nav className="flex-1 overflow-y-auto px-5 py-4">
+            {SECTION_SLUGS.map((slug) => (
+              <div key={slug} className="border-b border-gray-100">
+                <button
+                  onClick={() => setMobileExpanded((cur) => (cur === slug ? null : slug))}
+                  className="flex w-full items-center justify-between py-4 text-base font-medium text-gray-900"
+                >
+                  {CATEGORY_TREE[slug].label}
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform ${mobileExpanded === slug ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileExpanded === slug && (
+                  <div className="pb-3 pl-3">
+                    {CATEGORY_TREE[slug].subcategories.map((sub) => (
+                      <Link
+                        key={sub}
+                        to={`/categorie/${slug}?cat=${encodeURIComponent(sub)}`}
+                        onClick={() => setOpen(false)}
+                        className="block py-2 text-sm text-gray-600"
+                      >
+                        {sub}
+                      </Link>
+                    ))}
+                    <Link
+                      to={`/categorie/${slug}`}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 text-sm font-semibold text-gray-900"
+                    >
+                      {t("nav.viewAllSection", { section: CATEGORY_TREE[slug].label })}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ))}
+
             {links.map((l) => (
               <Link
                 key={l.label}
@@ -174,14 +266,18 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
+
+            <div className="py-4">
+              <LanguageSwitcher />
+            </div>
           </nav>
 
           <div className="grid grid-cols-2 gap-3 border-t border-gray-100 p-5">
             <Link to="/login" onClick={() => setOpen(false)} className="rounded-full border border-gray-300 py-3 text-center text-sm font-semibold">
-              Mon compte
+              {t("nav.myAccount")}
             </Link>
             <Link to="/cart" onClick={() => setOpen(false)} className="rounded-full bg-black py-3 text-center text-sm font-semibold text-white">
-              Panier ({count})
+              {t("nav.cart")} ({count})
             </Link>
           </div>
         </aside>

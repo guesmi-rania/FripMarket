@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Eye, EyeOff, Lock, Mail, ShoppingBag } from "lucide-react";
 import api from "../api";
 
 export default function Login() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -17,38 +18,17 @@ export default function Login() {
     setError("");
 
     if (!email || !password) {
-      setError("Merci de remplir tous les champs.");
+      setError(t("login.errorFillFields"));
       return;
     }
 
     try {
       setLoading(true);
-
-      const res = await api.post("/api/auth/login", {
-        email,
-        password,
-      });
-
-      // Store authentication information
-      localStorage.setItem("authToken", res.data.token);
-      localStorage.setItem("userEmail", res.data.email || email);
-      localStorage.setItem(
-        "isAdmin",
-        String(Boolean(res.data.isAdmin))
-      );
-
-      // Admin -> admin dashboard
-      if (res.data.isAdmin) {
-        navigate("/admin");
-      } else {
-        // Normal user -> homepage
-        navigate("/");
-      }
+      const res = await api.post("/api/auth/login", { email, password });
+      localStorage.setItem("adminToken", res.data.token);
+      navigate("/admin");
     } catch (err) {
-      const msg =
-        err.response?.data?.message ||
-        "Email ou mot de passe incorrect.";
-
+      const msg = err.response?.data?.message || t("login.errorInvalid");
       setError(msg);
     } finally {
       setLoading(false);
@@ -62,38 +42,20 @@ export default function Login() {
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-black">
             <ShoppingBag size={26} className="text-white" />
           </div>
-
-          <h1 className="text-2xl font-bold text-gray-900">
-            Connexion
-          </h1>
-
-          <p className="mt-2 text-sm text-gray-500">
-            Accédez à votre espace FripMarket
-          </p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("login.title")}</h1>
+          <p className="mt-2 text-sm text-gray-500">{t("login.subtitle")}</p>
         </div>
 
         <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
           <form onSubmit={handleLogin} className="space-y-5">
-            {error && (
-              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
-                {error}
-              </div>
-            )}
+            {error && <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">{error}</div>}
 
             <div>
-              <label
-                htmlFor="email"
-                className="mb-1.5 block text-sm font-medium text-gray-700"
-              >
-                Adresse email
+              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-gray-700">
+                {t("login.email")}
               </label>
-
               <div className="relative">
-                <Mail
-                  size={18}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-                />
-
+                <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   id="email"
                   type="email"
@@ -108,27 +70,16 @@ export default function Login() {
 
             <div>
               <div className="mb-1.5 flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Mot de passe
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  {t("login.password")}
                 </label>
-
-                <Link
-                  to="/forgot-password"
-                  className="text-xs font-medium text-gray-500 hover:text-pink-600"
-                >
-                  Mot de passe oublié ?
+                {/* Real working link — not a dead "#" anchor */}
+                <Link to="/forgot-password" className="text-xs font-medium text-gray-500 hover:text-pink-600">
+                  {t("login.forgotPassword")}
                 </Link>
               </div>
-
               <div className="relative">
-                <Lock
-                  size={18}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-                />
-
+                <Lock size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -138,24 +89,13 @@ export default function Login() {
                   placeholder="••••••••"
                   className="w-full rounded-xl border border-gray-300 py-3 pl-11 pr-11 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
                 />
-
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowPassword((value) => !value)
-                  }
+                  onClick={() => setShowPassword((v) => !v)}
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  aria-label={
-                    showPassword
-                      ? "Masquer le mot de passe"
-                      : "Afficher le mot de passe"
-                  }
+                  aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
                 >
-                  {showPassword ? (
-                    <EyeOff size={18} />
-                  ) : (
-                    <Eye size={18} />
-                  )}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
@@ -165,36 +105,25 @@ export default function Login() {
               disabled={loading}
               className="w-full rounded-full bg-black py-3 text-sm font-semibold text-white transition hover:bg-gray-900 disabled:opacity-50"
             >
-              {loading
-                ? "Connexion en cours…"
-                : "Se connecter"}
+              {loading ? t("login.signingIn") : t("login.signIn")}
             </button>
           </form>
 
           <div className="mt-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-gray-100" />
-
-            <span className="text-xs text-gray-400">
-              ou
-            </span>
-
+            <span className="text-xs text-gray-400">ou</span>
             <div className="h-px flex-1 bg-gray-100" />
           </div>
 
           <p className="mt-6 text-center text-sm text-gray-500">
-            Pas encore de compte ?{" "}
-            <Link
-              to="/register"
-              className="font-semibold text-gray-900 hover:text-pink-600"
-            >
-              Créer un compte
+            {t("login.noAccount")}{" "}
+            <Link to="/register" className="font-semibold text-gray-900 hover:text-pink-600">
+              {t("login.createAccount")}
             </Link>
           </p>
         </div>
 
-        <p className="mt-6 text-center text-xs text-gray-400">
-          Connectez-vous à votre compte FripMarket.
-        </p>
+        <p className="mt-6 text-center text-xs text-gray-400">{t("login.adminNote")}</p>
       </div>
     </div>
   );

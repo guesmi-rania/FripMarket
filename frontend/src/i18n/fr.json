@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "newArrivals": "Nouveautés",
+    "sale": "Soldes",
+    "women": "Femme",
+    "men": "Homme",
+    "children": "Enfant",
+    "contact": "Contact"
+  },
+  "common": {
+    "search": "Rechercher",
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "cart": "Panier",
+    "addToCart": "Ajouter au panier",
+    "price": "Prix",
+    "buy": "Acheter"
+  },
+  "footer": {
+    "copyright": "© 2026 FripMarket. Développé par Rania Guesmi. Tous droits réservés."
+  }
+}

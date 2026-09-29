@@ -19,12 +19,12 @@ import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 
-
 export default function App() {
   return (
     <Router>
       <div className="flex min-h-screen flex-col bg-white text-gray-900">
         <Navbar />
+
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -36,15 +36,19 @@ export default function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout/success" element={<Checkout />} />
+
             <Route path="/login" element={<Login />} />
-            <Route path="/sell" element={<Sell />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/sell" element={<Sell />} />
+
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/verify-email/:token" element={<VerifyEmail />} />
+
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
+
         <Footer />
       </div>
     </Router>

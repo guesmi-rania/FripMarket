@@ -9,6 +9,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -22,11 +23,32 @@ export default function Login() {
 
     try {
       setLoading(true);
-      const res = await api.post("/api/auth/login", { email, password });
-      localStorage.setItem("adminToken", res.data.token);
-      navigate("/admin");
+
+      const res = await api.post("/api/auth/login", {
+        email,
+        password,
+      });
+
+      // Store authentication information
+      localStorage.setItem("authToken", res.data.token);
+      localStorage.setItem("userEmail", res.data.email || email);
+      localStorage.setItem(
+        "isAdmin",
+        String(Boolean(res.data.isAdmin))
+      );
+
+      // Admin -> admin dashboard
+      if (res.data.isAdmin) {
+        navigate("/admin");
+      } else {
+        // Normal user -> homepage
+        navigate("/");
+      }
     } catch (err) {
-      const msg = err.response?.data?.message || "Email ou mot de passe incorrect.";
+      const msg =
+        err.response?.data?.message ||
+        "Email ou mot de passe incorrect.";
+
       setError(msg);
     } finally {
       setLoading(false);
@@ -40,22 +62,38 @@ export default function Login() {
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-black">
             <ShoppingBag size={26} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Connexion</h1>
-          <p className="mt-2 text-sm text-gray-500">Accédez à votre espace FripMarket</p>
+
+          <h1 className="text-2xl font-bold text-gray-900">
+            Connexion
+          </h1>
+
+          <p className="mt-2 text-sm text-gray-500">
+            Accédez à votre espace FripMarket
+          </p>
         </div>
 
         <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
           <form onSubmit={handleLogin} className="space-y-5">
             {error && (
-              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">{error}</div>
+              <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
+                {error}
+              </div>
             )}
 
             <div>
-              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="mb-1.5 block text-sm font-medium text-gray-700"
+              >
                 Adresse email
               </label>
+
               <div className="relative">
-                <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Mail
+                  size={18}
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+
                 <input
                   id="email"
                   type="email"
@@ -70,15 +108,27 @@ export default function Login() {
 
             <div>
               <div className="mb-1.5 flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Mot de passe
                 </label>
-                <a href="#" className="text-xs font-medium text-gray-500 hover:text-pink-600">
+
+                <Link
+                  to="/forgot-password"
+                  className="text-xs font-medium text-gray-500 hover:text-pink-600"
+                >
                   Mot de passe oublié ?
-                </a>
+                </Link>
               </div>
+
               <div className="relative">
-                <Lock size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <Lock
+                  size={18}
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -88,13 +138,24 @@ export default function Login() {
                   placeholder="••••••••"
                   className="w-full rounded-xl border border-gray-300 py-3 pl-11 pr-11 text-sm outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
                 />
+
                 <button
                   type="button"
-                  onClick={() => setShowPassword((v) => !v)}
+                  onClick={() =>
+                    setShowPassword((value) => !value)
+                  }
                   className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                  aria-label={
+                    showPassword
+                      ? "Masquer le mot de passe"
+                      : "Afficher le mot de passe"
+                  }
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showPassword ? (
+                    <EyeOff size={18} />
+                  ) : (
+                    <Eye size={18} />
+                  )}
                 </button>
               </div>
             </div>
@@ -104,26 +165,35 @@ export default function Login() {
               disabled={loading}
               className="w-full rounded-full bg-black py-3 text-sm font-semibold text-white transition hover:bg-gray-900 disabled:opacity-50"
             >
-              {loading ? "Connexion en cours…" : "Se connecter"}
+              {loading
+                ? "Connexion en cours…"
+                : "Se connecter"}
             </button>
           </form>
 
           <div className="mt-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-gray-100" />
-            <span className="text-xs text-gray-400">ou</span>
+
+            <span className="text-xs text-gray-400">
+              ou
+            </span>
+
             <div className="h-px flex-1 bg-gray-100" />
           </div>
 
           <p className="mt-6 text-center text-sm text-gray-500">
             Pas encore de compte ?{" "}
-            <Link to="/sell" className="font-semibold text-gray-900 hover:text-pink-600">
-              Commencer à vendre
+            <Link
+              to="/register"
+              className="font-semibold text-gray-900 hover:text-pink-600"
+            >
+              Créer un compte
             </Link>
           </p>
         </div>
 
         <p className="mt-6 text-center text-xs text-gray-400">
-          Cette page est réservée aux comptes administrateur.
+          Connectez-vous à votre compte FripMarket.
         </p>
       </div>
     </div>

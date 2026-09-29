@@ -1,5 +1,5 @@
 import Products from "./Products";
-import { DEMO_NEW_ARRIVALS } from "../data/demoproducts";
+import { DEMO_NEW_ARRIVALS } from "../data/demoProducts";
 
 export default function NewArrivals() {
   return (

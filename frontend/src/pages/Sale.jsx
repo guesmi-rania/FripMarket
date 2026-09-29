@@ -1,5 +1,6 @@
 import Products from "./Products";
-import { DEMO_SALE_PRODUCTS } from "../data/demoproducts";
+import { DEMO_SALE_PRODUCTS } from "../data/demoProducts";
+
 
 export default function Sale() {
   return (

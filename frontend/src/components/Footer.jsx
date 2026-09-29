@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-800 py-5 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} © 2026 FripMarket. Développé par Rania Guesmi. Tous droits réservés.
+        © {new Date().getFullYear()} FripMarket. Développé par Rania Guesmi. Tous droits réservés.
       </div>
     </footer>
   );

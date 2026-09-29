@@ -1,5 +1,5 @@
 import Products from "./Products";
-import { DEMO_SALE_PRODUCTS } from "../data/demoProducts";
+import { DEMO_SALE_PRODUCTS } from "../data/demoproducts";
 
 export default function Sale() {
   return (

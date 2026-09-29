@@ -1,11 +1,13 @@
 import { useState } from "react";
 import api from "../api";
+import { CATEGORY_TREE, SECTION_SLUGS, sectionLabel, subcategoriesFor } from "../data/categories";
 
 const initialForm = {
   name: "",
   description: "",
   price: "",
   oldPrice: "",
+  section: "",
   category: "",
   imageUrl: "",
   isNew: false,
@@ -17,8 +19,15 @@ export default function Sell() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null); // { type: 'success' | 'error', text }
 
+  const availableSubcategories = form.section ? subcategoriesFor(form.section) : [];
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (name === "section") {
+      // Reset the subcategory whenever the section changes, since the options differ.
+      setForm({ ...form, section: value, category: "" });
+      return;
+    }
     setForm({ ...form, [name]: type === "checkbox" ? checked : value });
   };
 
@@ -29,6 +38,7 @@ export default function Sell() {
       setLoading(true);
       await api.post("/api/products", {
         ...form,
+        section: sectionLabel(form.section),
         price: Number(form.price),
         oldPrice: form.oldPrice ? Number(form.oldPrice) : undefined,
       });
@@ -39,7 +49,7 @@ export default function Sell() {
       const text =
         err.response?.status === 401
           ? "Vous devez être connecté en tant qu'admin pour publier un article."
-          : "Erreur lors de l'ajout du produit.";
+          : err.response?.data?.message || "Erreur lors de l'ajout du produit.";
       setMessage({ type: "error", text });
     } finally {
       setLoading(false);
@@ -116,22 +126,42 @@ export default function Sell() {
           </div>
         </div>
 
-        <div>
-          <label className="mb-1.5 block text-sm font-medium text-gray-700">Catégorie</label>
-          <select
-            name="category"
-            required
-            value={form.category}
-            onChange={handleChange}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gray-900"
-          >
-            <option value="">Choisir une catégorie</option>
-            <option value="Robes">Robes</option>
-            <option value="Sacs">Sacs</option>
-            <option value="Chaussures">Chaussures</option>
-            <option value="Vêtements">Vêtements</option>
-            <option value="Accessoires">Accessoires</option>
-          </select>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-gray-700">Section</label>
+            <select
+              name="section"
+              required
+              value={form.section}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gray-900"
+            >
+              <option value="">Choisir</option>
+              {SECTION_SLUGS.map((slug) => (
+                <option key={slug} value={slug}>
+                  {CATEGORY_TREE[slug].label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-gray-700">Sous-catégorie</label>
+            <select
+              name="category"
+              required
+              disabled={!form.section}
+              value={form.category}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gray-900 disabled:bg-gray-50 disabled:text-gray-400"
+            >
+              <option value="">{form.section ? "Choisir" : "Choisir une section d'abord"}</option>
+              {availableSubcategories.map((sub) => (
+                <option key={sub} value={sub}>
+                  {sub}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div>

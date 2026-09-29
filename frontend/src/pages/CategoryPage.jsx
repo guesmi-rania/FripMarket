@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { SlidersHorizontal } from "lucide-react";
 import api from "../api";
 import ProductCard from "../components/ProductCard";
-import FilterSidebar from "../components/FilterSideBar";
+import FilterSidebar from "../components/FilterSidebar";
 import { CATEGORY_TREE, sectionLabel, subcategoriesFor } from "../data/categories";
 
 const normalize = (p) => ({

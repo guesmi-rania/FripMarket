@@ -1,88 +1,28 @@
 [
-  {
-    "id": 1,
-    "title": "Hermès Pre-Owned",
-    "subtitle": "sac à main Kelly 28 (2020)",
-    "price": "$26,812",
-    "image": "https://via.placeholder.com/420x420.png?text=Herm%C3%A8s+Kelly",
-    "badge": "-15% offerts"
-  },
-  {
-    "id": 2,
-    "title": "Van Cleef & Arpels Pre-Owned",
-    "subtitle": "collier Alhambra en or 18ct (années 2010)",
-    "price": "4,739 dt",
-    "image": "https://via.placeholder.com/420x420.png?text=Van+Cleef+%26+Arpels",
-    "badge": "-15% offerts"
-  },
-  {
-    "id": 3,
-    "name": "Chaussures 3",
-    "category": "Chaussures",
-    "price": 285,
-    "image": "/images/prod4.jpg"
-  },
-  {
-    "id": 4,
-    "name": "Vêtements 4",
-    "category": "Vêtements",
-    "price": 129,
-    "image": "/images/prod5.jpg"
-  },
-  {
-    "id": 5,
-    "name": "Chaussures 5",
-    "category": "Chaussures",
-    "price": 230,
-    "image": "/images/prod6.jpg"
-  },
-  {
-    "id": 6,
-    "name": "Vêtements 6",
-    "category": "Vêtements",
-    "price": 76,
-    "image": "/images/prod7.jpg"
-  },
-  {
-    "id": 7,
-    "name": "Chaussures 7",
-    "category": "Chaussures",
-    "price": 281,
-    "image": "/images/prod8.jpg"
-  },
-  {
-    "id": 8,
-    "name": "Chaussures 8",
-    "category": "Chaussures",
-    "price": 474,
-    "image": "/images/prod9.jpg"
-  },
-  {
-    "id": 9,
-    "name": "Accessoires 9",
-    "category": "Accessoires",
-    "price": 189,
-    "image": "/images/prod10.jpg"
-  },
-  {
-    "id": 10,
-    "name": "Vêtements 10",
-    "category": "Vêtements",
-    "price": 185,
-    "image": "/images/prod11.jpg"
-  },
-  {
-    "id": 11,
-    "name": "Chaussures 11",
-    "category": "Chaussures",
-    "price": 75,
-    "image": "/images/prod12.jpg"
-  },
-  {
-    "id": 12,
-    "name": "Vêtements 12",
-    "category": "Vêtements",
-    "price": 187,
-    "image": "/images/prod13.jpg"
-  }
+  { "id": 1,  "name": "Robe midi imprimée",     "section": "Femme",  "category": "Robes",       "price": 42, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 2,  "name": "Robe longue fleurie",     "section": "Femme",  "category": "Robes",       "price": 45, "oldPrice": 70, "onSale": true, "image": "/images/placeholder.jpg" },
+  { "id": 3,  "name": "Jupe plissée",            "section": "Femme",  "category": "Jupes",       "price": 32, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 4,  "name": "Set chemise et jupe",     "section": "Femme",  "category": "Sets",        "price": 58, "image": "/images/placeholder.jpg" },
+  { "id": 5,  "name": "Chemise en soie",         "section": "Femme",  "category": "Chemises",    "price": 40, "image": "/images/placeholder.jpg" },
+  { "id": 6,  "name": "Veste blazer",            "section": "Femme",  "category": "Vestes",      "price": 55, "image": "/images/placeholder.jpg" },
+  { "id": 7,  "name": "Sac bandoulière cuir",    "section": "Femme",  "category": "Sacs",        "price": 55, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 8,  "name": "Sac à main cuir",         "section": "Femme",  "category": "Sacs",        "price": 60, "oldPrice": 90, "onSale": true, "image": "/images/placeholder.jpg" },
+  { "id": 9,  "name": "Escarpins cuir",          "section": "Femme",  "category": "Chaussures",  "price": 38, "image": "/images/placeholder.jpg" },
+  { "id": 10, "name": "Collier doré",            "section": "Femme",  "category": "Bijoux",      "price": 20, "oldPrice": 32, "onSale": true, "image": "/images/placeholder.jpg" },
+  { "id": 11, "name": "Parfum vintage",          "section": "Femme",  "category": "Parfums",     "price": 25, "image": "/images/placeholder.jpg" },
+
+  { "id": 12, "name": "Chemise en lin",          "section": "Homme",  "category": "Chemises",    "price": 38, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 13, "name": "Chemise oxford",          "section": "Homme",  "category": "Chemises",    "price": 35, "oldPrice": 55, "onSale": true, "image": "/images/placeholder.jpg" },
+  { "id": 14, "name": "T-shirt basique",         "section": "Homme",  "category": "T-shirts",    "price": 18, "image": "/images/placeholder.jpg" },
+  { "id": 15, "name": "Pantalon chino",          "section": "Homme",  "category": "Pantalons",   "price": 34, "image": "/images/placeholder.jpg" },
+  { "id": 16, "name": "Veste denim",             "section": "Homme",  "category": "Vestes",      "price": 45, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 17, "name": "Baskets blanches",        "section": "Homme",  "category": "Chaussures",  "price": 50, "oldPrice": 80, "onSale": true, "image": "/images/placeholder.jpg" },
+  { "id": 18, "name": "Ceinture cuir",           "section": "Homme",  "category": "Accessoires", "price": 15, "image": "/images/placeholder.jpg" },
+
+  { "id": 19, "name": "T-shirt imprimé enfant",  "section": "Enfant", "category": "Vêtements",   "price": 15, "image": "/images/placeholder.jpg" },
+  { "id": 20, "name": "Veste en jean enfant",    "section": "Enfant", "category": "Vêtements",   "price": 25, "oldPrice": 40, "onSale": true, "image": "/images/placeholder.jpg" },
+  { "id": 21, "name": "Baskets enfant",          "section": "Enfant", "category": "Chaussures",  "price": 28, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 22, "name": "Bonnet en laine",         "section": "Enfant", "category": "Accessoires", "price": 10, "image": "/images/placeholder.jpg" },
+  { "id": 23, "name": "Peluche ourson",          "section": "Enfant", "category": "Jouets",      "price": 12, "isNew": true,  "image": "/images/placeholder.jpg" },
+  { "id": 24, "name": "Robe fillette",           "section": "Enfant", "category": "Vêtements",   "price": 20, "image": "/images/placeholder.jpg" }
 ]

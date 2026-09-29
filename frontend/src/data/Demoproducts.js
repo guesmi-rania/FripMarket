@@ -18,3 +18,4 @@ export const DEMO_SALE_PRODUCTS = [
   { id: "demo-s5", name: "Veste en jean enfant", section: "Enfant", category: "Vêtements", price: 25, oldPrice: 40, onSale: true, image: "/images/placeholder.jpg" },
   { id: "demo-s6", name: "Collier doré", section: "Femme", category: "Bijoux", price: 20, oldPrice: 32, onSale: true, image: "/images/placeholder.jpg" },
 ];
+      

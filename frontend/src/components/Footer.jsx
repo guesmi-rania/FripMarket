@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-800 py-5 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} FripMarket. {t("footer.rights")}
+        © {new Date().getFullYear()} FripMarket . {t("footer.rights")}
       </div>
     </footer>
   );
